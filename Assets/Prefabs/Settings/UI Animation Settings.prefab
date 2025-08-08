@@ -48,3 +48,5 @@ MonoBehaviour:
   questDetailButtonScaleDuration: 0.25
   questPopUpMenuScaleSize: 0.75
   questPopUpMenuScaleDuration: 0.2
+  glowAnimationScaleSize: 5
+  glowAnimationScaleDuration: 0.5

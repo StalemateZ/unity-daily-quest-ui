@@ -25,6 +25,8 @@ public class QuestManager : MonoBehaviour
     private const string QUEST_IN_PROGRESS = "IN PROGRESS";
     private const string QUEST_CLAIM = "CLAIM";
     private const string QUEST_CLAIMED = "CLAIMED";
+    [Header("Particles")]
+    [SerializeField] private GameObject sparkleParticle;
 
     private void Awake()
     {
@@ -34,12 +36,12 @@ public class QuestManager : MonoBehaviour
 
     private void OnEnable()
     {
-        QuestContainer.OnQuestDetailsOpened += SetupQuestDetails;
+        QuestContainer.OnQuestDetailsOpened += OpenDetailsMenu;
     }
 
     private void OnDisable()
     {
-        QuestContainer.OnQuestDetailsOpened -= SetupQuestDetails;
+        QuestContainer.OnQuestDetailsOpened -= OpenDetailsMenu;
     }
 
     private void SetupQuestList()
@@ -51,6 +53,8 @@ public class QuestManager : MonoBehaviour
             container.Setup(quest);
         }
     }
+
+    
 
     private void SetupQuestDetails(Quest data)
     {
@@ -78,6 +82,11 @@ public class QuestManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void OpenDetailsMenu(Quest data)
+    {
+        SetupQuestDetails(data);
 
         questDetailMenu.SetActive(true);
         questDetailPanel.DOScale(UIAnimationSettings.Instance.QuestPopUpMenuScaleSize, UIAnimationSettings.Instance.QuestPopUpMenuScaleDuration).SetEase(Ease.OutBack).From();
@@ -95,6 +104,8 @@ public class QuestManager : MonoBehaviour
     public void ClaimQuest()
     {
         activeQuest.Status = QuestStatus.Claimed;
+        GameObject particle = Instantiate(sparkleParticle);
+        particle.transform.position = questDetailButton.transform.position;
         SetupQuestDetails(activeQuest);
     }
 }
