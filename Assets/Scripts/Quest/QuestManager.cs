@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject questCardPrefab;
     [Header("Quest Details")]
     [SerializeField] private GameObject questDetailMenu;
+    [SerializeField] private Transform questDetailPanel;
+    private Vector3 questDetailPanelOriginalSize;
     [SerializeField] private TextMeshProUGUI questDetailTitle;
     [SerializeField] private TextMeshProUGUI questDetailDesc;
     [SerializeField] private Button questDetailButton;
@@ -25,6 +28,7 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
+        questDetailPanelOriginalSize = questDetailPanel.localScale;
         SetupQuestList();
     }
 
@@ -76,6 +80,16 @@ public class QuestManager : MonoBehaviour
         }
 
         questDetailMenu.SetActive(true);
+        questDetailPanel.DOScale(UIAnimationSettings.Instance.QuestPopUpMenuScaleSize, UIAnimationSettings.Instance.QuestPopUpMenuScaleDuration).SetEase(Ease.OutBack).From();
+    }
+
+    public void CloseDetailsMenu()
+    {
+        questDetailPanel.DOScale(UIAnimationSettings.Instance.QuestPopUpMenuScaleSize, UIAnimationSettings.Instance.QuestPopUpMenuScaleDuration).SetEase(Ease.InBack).OnComplete(() =>
+        {
+            questDetailMenu.SetActive(false);
+            questDetailPanel.localScale = questDetailPanelOriginalSize;
+        });
     }
 
     public void ClaimQuest()
