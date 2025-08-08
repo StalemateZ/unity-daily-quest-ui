@@ -16,4 +16,4 @@ MonoBehaviour:
   title: Dirty Work
   description: A team of explorers have just finished an exploration inside a dungeon.
     Help them carry their loot back to their base.
-  status: 0
+  status: 1

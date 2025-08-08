@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 54024673}
   - component: {fileID: 54024675}
   - component: {fileID: 54024674}
+  - component: {fileID: 54024676}
   m_Layer: 5
   m_Name: Dark Background
   m_TagString: Untagged
@@ -301,6 +302,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54024672}
   m_CullTransparentMesh: 1
+--- !u!114 &54024676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54024672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 54024674}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2061340779}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &309581035
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +910,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 800, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1261158164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
+  m_PrefabInstance: {fileID: 5608086188512262801}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eda40282149724da137f264e2b09fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1270186557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1405,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1355,7 +1423,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1714152469}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1261158164}
+        m_TargetAssemblyTypeName: QuestManager, Assembly-CSharp
+        m_MethodName: ClaimQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1714152469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1740,9 +1820,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
+      propertyPath: questDetailDesc
+      value: 
+      objectReference: {fileID: 1336853440}
+    - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
+      propertyPath: questDetailMenu
+      value: 
+      objectReference: {fileID: 2061340779}
+    - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
       propertyPath: questListParent
       value: 
       objectReference: {fileID: 1543118144}
+    - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
+      propertyPath: questDetailTitle
+      value: 
+      objectReference: {fileID: 1433767211}
+    - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
+      propertyPath: questDetailButton
+      value: 
+      objectReference: {fileID: 1714152468}
+    - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
+      propertyPath: questDetailButtonText
+      value: 
+      objectReference: {fileID: 309581037}
+    - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
+      propertyPath: questDetailButtonImage
+      value: 
+      objectReference: {fileID: 1714152469}
     - target: {fileID: 8249539628155874658, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
       propertyPath: m_Name
       value: Quest Manager

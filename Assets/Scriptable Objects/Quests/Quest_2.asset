@@ -15,4 +15,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a5fe914679abba041a0226d4631ca0f0, type: 3}
   title: The Perfect Fit
   description: Tomorrow is Tina's 8th birthday. Get her some clothing as a gift!
-  status: 0
+  status: 1

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class QuestContainer : MonoBehaviour
 {
+    public static event System.Action<Quest> OnQuestDetailsOpened;
+
     [Header("Unity References")]
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI title;
@@ -16,5 +18,10 @@ public class QuestContainer : MonoBehaviour
         this.questData = questData;
         icon.sprite = questData.Icon;
         title.text = questData.Title;
+    }
+
+    public void OpenDetails()
+    {
+        OnQuestDetailsOpened?.Invoke(questData);
     }
 }

@@ -57,3 +57,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bc9efd7fcf62c54fb6860e2e0a8cd17, type: 2}
   questListParent: {fileID: 0}
   questCardPrefab: {fileID: 261246422586692137, guid: 4d7939d63f77d4d42bbbf0decfd9de5c, type: 3}
+  questDetailMenu: {fileID: 0}
+  questDetailTitle: {fileID: 0}
+  questDetailDesc: {fileID: 0}
+  questDetailButton: {fileID: 0}
+  questDetailButtonText: {fileID: 0}
+  questDetailButtonImage: {fileID: 0}
+  questDetailUnclaimedColor: {r: 0.4117647, g: 0.21960784, b: 0.105882354, a: 1}
+  questDetailClaimedColor: {r: 0.36078432, g: 0.36078432, b: 0.36862746, a: 1}

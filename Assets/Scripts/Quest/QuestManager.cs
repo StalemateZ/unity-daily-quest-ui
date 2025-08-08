@@ -1,16 +1,41 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] private Quest[] quests;
+    private Quest activeQuest;
 
-    [Header("Unity Reference")]
+    [Header("Quest List")]
     [SerializeField] private Transform questListParent;
     [SerializeField] private GameObject questCardPrefab;
+    [Header("Quest Details")]
+    [SerializeField] private GameObject questDetailMenu;
+    [SerializeField] private TextMeshProUGUI questDetailTitle;
+    [SerializeField] private TextMeshProUGUI questDetailDesc;
+    [SerializeField] private Button questDetailButton;
+    [SerializeField] private TextMeshProUGUI questDetailButtonText;
+    [SerializeField] private Image questDetailButtonImage;
+    [SerializeField] private Color questDetailUnclaimedColor;
+    [SerializeField] private Color questDetailClaimedColor;
+    private const string QUEST_IN_PROGRESS = "IN PROGRESS";
+    private const string QUEST_CLAIM = "CLAIM";
+    private const string QUEST_CLAIMED = "CLAIMED";
 
     private void Awake()
     {
         SetupQuestList();
+    }
+
+    private void OnEnable()
+    {
+        QuestContainer.OnQuestDetailsOpened += SetupQuestDetails;
+    }
+
+    private void OnDisable()
+    {
+        QuestContainer.OnQuestDetailsOpened -= SetupQuestDetails;
     }
 
     private void SetupQuestList()
@@ -21,5 +46,41 @@ public class QuestManager : MonoBehaviour
             QuestContainer container = questCard.GetComponent<QuestContainer>();
             container.Setup(quest);
         }
+    }
+
+    private void SetupQuestDetails(Quest data)
+    {
+        activeQuest = data;
+
+        questDetailTitle.text = data.Title;
+        questDetailDesc.text = data.Description;
+        switch (data.Status)
+        {
+            case QuestStatus.InProgress:
+                questDetailButtonText.text = QUEST_IN_PROGRESS;
+                questDetailButtonImage.color = questDetailClaimedColor;
+                questDetailButton.interactable = false;
+                break;
+            case QuestStatus.Unclaimed:
+                questDetailButtonText.text = QUEST_CLAIM;
+                questDetailButtonImage.color = questDetailUnclaimedColor;
+                questDetailButton.interactable = true;
+                break;
+            case QuestStatus.Claimed:
+                questDetailButtonText.text = QUEST_CLAIMED;
+                questDetailButtonImage.color = questDetailClaimedColor;
+                questDetailButton.interactable = false;
+                break;
+            default:
+                break;
+        }
+
+        questDetailMenu.SetActive(true);
+    }
+
+    public void ClaimQuest()
+    {
+        activeQuest.Status = QuestStatus.Claimed;
+        SetupQuestDetails(activeQuest);
     }
 }

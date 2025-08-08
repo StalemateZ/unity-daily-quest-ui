@@ -17,4 +17,4 @@ MonoBehaviour:
   description: One of your friend is inviting you to explore a dungeon together,
     but you don't have the appropriate equipments. Get a full armor set from the
     blacksmith.
-  status: 0
+  status: 2
