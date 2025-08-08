@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8249539628155874658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3051496979009926973}
+  - component: {fileID: 3132517570632945170}
+  m_Layer: 0
+  m_Name: Quest Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3051496979009926973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8249539628155874658}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 286.79837, y: 401.94595, z: 1.2663002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3132517570632945170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8249539628155874658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eda40282149724da137f264e2b09fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quests:
+  - {fileID: 11400000, guid: 886a7779e333091489efe181c154ec5f, type: 2}
+  - {fileID: 11400000, guid: c713c3ca2b6ef0946a5766a85b8eb406, type: 2}
+  - {fileID: 11400000, guid: a4f86daac3969aa4f94ce0fed3f7ee6f, type: 2}
+  - {fileID: 11400000, guid: 68a130c39bac50d4c90098e49132dcab, type: 2}
+  - {fileID: 11400000, guid: 369137f7b50b0b944a9b94ca6edc4ec0, type: 2}
+  - {fileID: 11400000, guid: 1ed35c00f5f89e04db2948f4321b80d3, type: 2}
+  - {fileID: 11400000, guid: 20b73e02b071ad44c97b75a7ac8ffe1a, type: 2}
+  - {fileID: 11400000, guid: b1436991c9c2c4f4ead99cf68a686966, type: 2}
+  - {fileID: 11400000, guid: 6a058339db488c747a4a307514fcc502, type: 2}
+  - {fileID: 11400000, guid: 8bc9efd7fcf62c54fb6860e2e0a8cd17, type: 2}
+  questListParent: {fileID: 0}
+  questCardPrefab: {fileID: 261246422586692137, guid: 4d7939d63f77d4d42bbbf0decfd9de5c, type: 3}
