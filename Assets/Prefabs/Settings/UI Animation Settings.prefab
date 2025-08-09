@@ -44,9 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb03778ebcfe9948963fa7ef5324e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questDetailButtonScaleSize: 1.25
+  questDetailButtonScaleSize: 0.9
   questDetailButtonScaleDuration: 0.25
   questPopUpMenuScaleSize: 0.75
   questPopUpMenuScaleDuration: 0.2
-  glowAnimationScaleSize: 5
-  glowAnimationScaleDuration: 0.5
