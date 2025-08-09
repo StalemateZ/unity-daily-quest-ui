@@ -48,3 +48,5 @@ MonoBehaviour:
   questDetailButtonScaleDuration: 0.25
   questPopUpMenuScaleSize: 0.75
   questPopUpMenuScaleDuration: 0.2
+  questListIntroDuration: 0.25
+  questListOffsetMultiplier: 0.05

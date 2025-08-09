@@ -46,11 +46,32 @@ public class QuestManager : MonoBehaviour
 
     private void SetupQuestList()
     {
-        foreach (Quest quest in quests)
+        questCardPrefab.SetActive(false);
+        for (int i = 0; i < quests.Length; i++)
         {
             GameObject questCard = Instantiate(questCardPrefab, questListParent);
-            QuestContainer container = questCard.GetComponent<QuestContainer>();
-            container.Setup(quest);
+            QuestContainer container = questCard.GetComponentInChildren<QuestContainer>();
+            
+            container.Setup(quests[i]);
+            
+            RectTransform rectTransform = container.GetComponent<RectTransform>();
+
+            Sequence questIntro = DOTween.Sequence();
+
+            questIntro
+                .Insert(
+                UIAnimationSettings.Instance.QuestListOffsetMultiplier * i,
+                rectTransform.DOAnchorPosX(
+                    (rectTransform.anchoredPosition.x - rectTransform.sizeDelta.x),
+                    UIAnimationSettings.Instance.QuestListIntroDuration
+                ).From())
+                .InsertCallback(
+                UIAnimationSettings.Instance.QuestListOffsetMultiplier * i,
+                () =>
+                {
+                    questCard.SetActive(true);
+                }
+                );
         }
     }
 

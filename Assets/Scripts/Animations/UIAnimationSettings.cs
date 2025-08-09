@@ -54,4 +54,23 @@ public class UIAnimationSettings : MonoBehaviour
         set { questPopUpMenuScaleDuration = value; }
     }
     #endregion
+    
+    #region Quest List
+    [Header("Quest List")]
+    [SerializeField][Min(0f)] private float questListIntroDuration = 0.25f;
+
+    public float QuestListIntroDuration
+    {
+        get { return Mathf.Clamp(questListIntroDuration, 0f, float.MaxValue); }
+        set { questListIntroDuration = value; }
+    }
+
+    [SerializeField][Min(0f)] private float questListOffsetMultiplier = 0.25f;
+
+    public float QuestListOffsetMultiplier
+    {
+        get { return Mathf.Clamp(questListOffsetMultiplier, 0f, float.MaxValue); }
+        set { questListOffsetMultiplier = value; }
+    }
+    #endregion
 }
