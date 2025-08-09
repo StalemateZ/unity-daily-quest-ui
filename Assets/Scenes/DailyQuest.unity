@@ -1913,7 +1913,7 @@ PrefabInstance:
     - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
       propertyPath: questDetailButton
       value: 
-      objectReference: {fileID: 1714152468}
+      objectReference: {fileID: 1714152471}
     - target: {fileID: 3132517570632945170, guid: 3e4e4769f1a811e4b94c2698a1e43e62, type: 3}
       propertyPath: questDetailButtonText
       value: 

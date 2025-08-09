@@ -17,7 +17,7 @@ public class QuestManager : MonoBehaviour
     private Vector3 questDetailPanelOriginalSize;
     [SerializeField] private TextMeshProUGUI questDetailTitle;
     [SerializeField] private TextMeshProUGUI questDetailDesc;
-    [SerializeField] private Button questDetailButton;
+    [SerializeField] private QuestDetailsButton questDetailButton;
     [SerializeField] private TextMeshProUGUI questDetailButtonText;
     [SerializeField] private Image questDetailButtonImage;
     [SerializeField] private Color questDetailUnclaimedColor;
@@ -94,17 +94,17 @@ public class QuestManager : MonoBehaviour
             case QuestStatus.InProgress:
                 questDetailButtonText.text = QUEST_IN_PROGRESS;
                 questDetailButtonImage.color = questDetailClaimedColor;
-                questDetailButton.interactable = false;
+                questDetailButton.Button.interactable = false;
                 break;
             case QuestStatus.Unclaimed:
                 questDetailButtonText.text = QUEST_CLAIM;
                 questDetailButtonImage.color = questDetailUnclaimedColor;
-                questDetailButton.interactable = true;
+                questDetailButton.Button.interactable = true;
                 break;
             case QuestStatus.Claimed:
                 questDetailButtonText.text = QUEST_CLAIMED;
                 questDetailButtonImage.color = questDetailClaimedColor;
-                questDetailButton.interactable = false;
+                questDetailButton.Button.interactable = false;
                 break;
             default:
                 break;
@@ -136,7 +136,8 @@ public class QuestManager : MonoBehaviour
         particle.transform.position = questDetailButton.transform.position;
 
         questDetailButtonImage.DOGradientColor(UIAnimationSettings.Instance.QuestClaimButtonGradient, UIAnimationSettings.Instance.QuestClaimDuration).SetEase(Ease.OutSine);
-        questDetailButton.transform.DOScale(UIAnimationSettings.Instance.QuestClaimButtonScaleSize, UIAnimationSettings.Instance.QuestClaimDuration).SetEase(Ease.OutSine).From();
+        questDetailButton.transform.localScale = Vector3.one * UIAnimationSettings.Instance.QuestClaimButtonScaleSize;
+        questDetailButton.transform.DOScale(questDetailButton.OriginalSize, UIAnimationSettings.Instance.QuestClaimDuration).SetEase(Ease.OutSine);
 
         SetupQuestDetails(activeQuest);
     }
