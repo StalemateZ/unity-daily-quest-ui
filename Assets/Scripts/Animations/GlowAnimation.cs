@@ -15,6 +15,6 @@ public class GlowAnimation : MonoBehaviour
 
         DOTween.Sequence()
             .Insert(0, transform.DOScale(glowAnimationScaleSize, glowAnimationScaleDuration).SetEase(Ease.OutExpo))
-            .Insert(0, sr.DOFade(0f, glowAnimationScaleDuration));
+            .Insert(0, sr.DOFade(0f, glowAnimationScaleDuration).SetEase(Ease.InSine));
     }
 }

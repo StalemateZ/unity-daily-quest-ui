@@ -73,4 +73,32 @@ public class UIAnimationSettings : MonoBehaviour
         set { questListOffsetMultiplier = value; }
     }
     #endregion
+
+    #region VFX
+    [Header("Claim VFX")]
+    [SerializeField][Min(0f)] private float questClaimDuration = 0.5f;
+
+    public float QuestClaimDuration
+    {
+        get { return Mathf.Clamp(questClaimDuration, 0f, float.MaxValue); }
+        set { questClaimDuration = value; }
+    }
+
+    [SerializeField][Min(0f)] private float questClaimButtonScaleSize = 1.25f;
+
+    public float QuestClaimButtonScaleSize
+    {
+        get { return Mathf.Clamp(questClaimButtonScaleSize, 0f, float.MaxValue); }
+        set { questClaimButtonScaleSize = value; }
+    }
+
+    [SerializeField] private Gradient questClaimButtonGradient;
+
+    public Gradient QuestClaimButtonGradient 
+    {
+        get { return questClaimButtonGradient; }
+        set { questClaimButtonGradient = value; }
+    }
+
+    #endregion
 }

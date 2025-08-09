@@ -31,6 +31,12 @@ public class QuestManager : MonoBehaviour
     private void Awake()
     {
         questDetailPanelOriginalSize = questDetailPanel.localScale;
+
+        //This makes the last color of the gradient the claimed color.
+        GradientColorKey[] colorKeys = UIAnimationSettings.Instance.QuestClaimButtonGradient.colorKeys;
+        colorKeys[colorKeys.Length - 1].color = questDetailClaimedColor;
+        UIAnimationSettings.Instance.QuestClaimButtonGradient.SetKeys(colorKeys, UIAnimationSettings.Instance.QuestClaimButtonGradient.alphaKeys);
+
         SetupQuestList();
     }
 
@@ -125,8 +131,13 @@ public class QuestManager : MonoBehaviour
     public void ClaimQuest()
     {
         activeQuest.Status = QuestStatus.Claimed;
+
         GameObject particle = Instantiate(sparkleParticle);
         particle.transform.position = questDetailButton.transform.position;
+
+        questDetailButtonImage.DOGradientColor(UIAnimationSettings.Instance.QuestClaimButtonGradient, UIAnimationSettings.Instance.QuestClaimDuration).SetEase(Ease.OutSine);
+        questDetailButton.transform.DOScale(UIAnimationSettings.Instance.QuestClaimButtonScaleSize, UIAnimationSettings.Instance.QuestClaimDuration).SetEase(Ease.OutSine).From();
+
         SetupQuestDetails(activeQuest);
     }
 }
