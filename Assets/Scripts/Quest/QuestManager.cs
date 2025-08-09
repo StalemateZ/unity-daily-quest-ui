@@ -1,11 +1,28 @@
 using DG.Tweening;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
+    private struct QuestGameObject
+    {
+        public Quest quest;
+        public GameObject gameObject;
+        public QuestContainer container;
+
+        public QuestGameObject(Quest quest, GameObject gameObject, QuestContainer container)
+        {
+            this.quest = quest;
+            this.gameObject = gameObject;
+            this.container = container;
+        }
+    }
+
     [SerializeField] private Quest[] quests;
+    private List<QuestGameObject> questGameObjects;
     private Quest activeQuest;
 
     [Header("Quest List")]
@@ -31,12 +48,14 @@ public class QuestManager : MonoBehaviour
     private void Awake()
     {
         questDetailPanelOriginalSize = questDetailPanel.localScale;
+        questGameObjects = new List<QuestGameObject>();
 
         //This makes the last color of the gradient the claimed color.
         GradientColorKey[] colorKeys = UIAnimationSettings.Instance.QuestClaimButtonGradient.colorKeys;
         colorKeys[colorKeys.Length - 1].color = questDetailClaimedColor;
         UIAnimationSettings.Instance.QuestClaimButtonGradient.SetKeys(colorKeys, UIAnimationSettings.Instance.QuestClaimButtonGradient.alphaKeys);
 
+        SortQuests();
         SetupQuestList();
     }
 
@@ -50,13 +69,37 @@ public class QuestManager : MonoBehaviour
         QuestContainer.OnQuestDetailsOpened -= OpenDetailsMenu;
     }
 
+    private void SortQuests()
+    {
+        quests = quests
+            .OrderByDescending(q => q.Status == QuestStatus.Unclaimed)
+            .ThenByDescending(q => q.Status == QuestStatus.InProgress)
+            .ToArray();
+    }
+
+    private void SortGameObjects()
+    {
+        questGameObjects = questGameObjects
+            .OrderByDescending(q => q.quest.Status == QuestStatus.Unclaimed)
+            .ThenByDescending(q => q.quest.Status == QuestStatus.InProgress)
+            .ToList();
+
+        for (int i = 0; i < questGameObjects.Count; i++)
+        {
+            questGameObjects[i].gameObject.transform.SetSiblingIndex(i);
+            questGameObjects[i].container.Setup(questGameObjects[i].quest);
+        }
+    }
+
     private void SetupQuestList()
     {
         questCardPrefab.SetActive(false);
         for (int i = 0; i < quests.Length; i++)
         {
             GameObject questCard = Instantiate(questCardPrefab, questListParent);
+
             QuestContainer container = questCard.GetComponentInChildren<QuestContainer>();
+            questGameObjects.Add(new QuestGameObject(quests[i], questCard, container));
             
             container.Setup(quests[i]);
             
@@ -138,6 +181,7 @@ public class QuestManager : MonoBehaviour
         questDetailButtonImage.DOGradientColor(UIAnimationSettings.Instance.QuestClaimButtonGradient, UIAnimationSettings.Instance.QuestClaimDuration).SetEase(Ease.OutSine);
         questDetailButton.transform.DOScale(UIAnimationSettings.Instance.QuestClaimButtonScaleSize, UIAnimationSettings.Instance.QuestClaimDuration).SetEase(Ease.OutSine).From();
 
+        SortGameObjects();
         SetupQuestDetails(activeQuest);
     }
 }

@@ -11,6 +11,7 @@ public class QuestContainer : MonoBehaviour
     [Header("Unity References")]
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI title;
+    [SerializeField] private GameObject darkenEffect;
     private Quest questData;
 
     public void Setup(Quest questData)
@@ -18,6 +19,8 @@ public class QuestContainer : MonoBehaviour
         this.questData = questData;
         icon.sprite = questData.Icon;
         title.text = questData.Title;
+
+        darkenEffect.SetActive(questData.Status == QuestStatus.Claimed);
     }
 
     public void OpenDetails()
